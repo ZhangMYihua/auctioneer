@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  get 'sessions/new'
+
+  get 'sessions/create'
+
+  get 'sessions/destroy'
+
+  get 'bids/new'
+
+  get 'bids/create'
+
+  get 'bids/show'
+
   get 'products/index'
 
   get 'products/new'

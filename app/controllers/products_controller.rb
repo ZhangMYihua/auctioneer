@@ -5,6 +5,11 @@ class ProductsController < ApplicationController
   def new
   end
 
+  def show
+    @product = Product.find(params[:id])
+    @seller = @product.seller
+  end
+
   def create
     p = Product.new(product_params)
     p.end_time = case product_params[:auction_ends_in]
@@ -27,6 +32,6 @@ class ProductsController < ApplicationController
 
   private
   def product_params
-    params.require(:product).permit(:auction_ends_in)
+    params.require(:product).permit(:name, :auction_ends_in)
   end
 end

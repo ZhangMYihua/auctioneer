@@ -6,4 +6,17 @@ class Product < ActiveRecord::Base
   def auction_ends_in
 
   end
+
+  def starting_price_string
+    starting_price && starting_price.format
+  end
+
+  def starting_price_string=(val)
+    if val =~ /(\d+(\.\d+)?)/
+      self.starting_price_cents = ($1.to_f * 100).to_i # convert to cents
+    else
+      raise "Couldn't turn this into a price: #{val.inspect}"
+    end
+  end
+
 end

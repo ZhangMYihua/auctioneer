@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
 
   def create
    if @user = login(params[:email], params[:password])
-     redirect_back_or_to(:instructors, notice: 'Login successful')
+     redirect_back_or_to(:products, notice: 'Login successful')
    else
     flash.now[:alert] = 'Login failed'
     render action: 'new'

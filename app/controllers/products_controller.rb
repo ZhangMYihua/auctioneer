@@ -3,6 +3,7 @@ class ProductsController < ApplicationController
   end
 
   def new
+    @product = Product.new
   end
 
   def show
@@ -32,6 +33,6 @@ class ProductsController < ApplicationController
 
   private
   def product_params
-    params.require(:product).permit(:name, :auction_ends_in)
+    params.require(:product).permit(:name, :text, :)
   end
 end

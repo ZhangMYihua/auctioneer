@@ -12,14 +12,14 @@ class ProductsController < ApplicationController
   end
 
   def create
-    p = Product.new(product_params)
-    p.end_time = case product_params[:auction_ends_in]
-    when "1"
-      DateTime.now + 1.week
-    when "2"
-      Datetime.now + 1.day
-    end
-    p.save
+    # p = Product.new(product_params)
+    # p.end_time = case product_params[:auction_ends_in]
+    # when "1"
+    #   DateTime.now + 1.week
+    # when "2"
+    #   Datetime.now + 1.day
+    # end
+    # p.save
   end
 
   def edit
@@ -33,6 +33,6 @@ class ProductsController < ApplicationController
 
   private
   def product_params
-    params.require(:product).permit(:name, :text, :)
+    params.require(:product).permit(:name, :text)
   end
 end

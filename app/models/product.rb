@@ -4,7 +4,7 @@ class Product < ActiveRecord::Base
   monetize :starting_price_cents
 
   def auction_ends_in
-
+    
   end
 
   def starting_price_string

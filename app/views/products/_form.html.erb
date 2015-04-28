@@ -1,0 +1,27 @@
+<%= form_for (@product) do |f|  %>
+  
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%=  f.label :starting_price_string %>
+    <%= f.number_field :starting_price_string, placeholder: 'Amount in USD' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :end_time %>
+    <%= f.datetime_select :end_time, discard_year: :true, hour_step: 1, ampm: true %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>

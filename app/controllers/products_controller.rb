@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   def index
+    @products = Product.all
   end
 
   def new
@@ -12,7 +13,17 @@ class ProductsController < ApplicationController
   end
 
   def create
-    # p = Product.new(product_params)
+    @product = Product.new(product_params)
+
+    respond_to do |format|
+      if @product.save
+        format.html { redirect_to products_path }
+        format.js {}
+      else
+        format.html {render :new, alert: "Create product failed"}
+        format.js {}
+      end
+    end
     # p.end_time = case product_params[:auction_ends_in]
     # when "1"
     #   DateTime.now + 1.week
@@ -32,7 +43,9 @@ class ProductsController < ApplicationController
   end
 
   private
+
   def product_params
     params.require(:product).permit(:name, :text)
   end
+
 end

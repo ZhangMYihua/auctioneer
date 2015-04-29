@@ -1,10 +1,17 @@
+require 'time_diff'
+
 class Product < ActiveRecord::Base
   belongs_to :seller, class_name: 'User', foreign_key: :seller_id
   has_many :bids
   monetize :starting_price_cents
 
-  def auction_ends_in
-    
+  def remaining_time
+    if self.end_time > Time.now.utc
+      t = Time.diff(self.end_time, Time.zone.now)
+      return t[:diff]
+    else
+      return "This auction has closed"
+    end
   end
 
   def starting_price_string

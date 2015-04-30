@@ -1,5 +1,15 @@
 <p><strong><%= link_to product.name, product %></strong></p>
+  
   <p><strong>Description: </strong><%= product.description %></p>
+  
   <p><strong>Price: </strong>$<%= product.starting_price %></p>
-  <p><strong>Remaining Time: </strong><%= product.remaining_time %></p>
+  
+  <p><strong>Remaining Time: </strong>
+    <div id='countdown_<%= product.id %>'><%= product.remaining_time %></div>
+  </p>
+  <% if product.end_time > DateTime.now.utc%>
+    <script>
+      $("#countdown_<%= product.id %>").countdown({until: "<%= product.end_time %>"})
+    </script>
+  <% end %>
   <br>

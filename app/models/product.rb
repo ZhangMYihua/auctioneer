@@ -6,11 +6,12 @@ class Product < ActiveRecord::Base
   monetize :starting_price_cents
 
   def remaining_time
+    # binding.pry
     if self.end_time > Time.now.utc
       t = Time.diff(self.end_time, Time.zone.now)
-      return t[:diff]
+      t[:diff]
     else
-      return "This auction has closed"
+      "This auction has closed"
     end
   end
 

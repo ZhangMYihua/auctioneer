@@ -15,6 +15,10 @@ class Product < ActiveRecord::Base
     end
   end
 
+  def strf_time
+    self.end_time.strftime("%Y/%m/%d %H:%M:%S")
+  end
+
   def starting_price_string
     starting_price && starting_price.format
   end

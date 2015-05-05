@@ -12,6 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require flipclock.min
 //= require jquery.countdown
-//= require jquery.countdown-es
 //= require_tree .

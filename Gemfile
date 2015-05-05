@@ -5,6 +5,9 @@ source 'https://rubygems.org'
 gem 'jquery-countdown-rails'
 gem 'time_diff'
 gem 'rails', '4.2.0'
+gem 'flipclockjs-rails', '~> 0.5.5b.1'
+gem 'jquery-final_countdown-rails'
+gem 'jquery-countdown-rails'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets

@@ -1,4 +1,15 @@
 <p><strong><%= link_to product.name, product %></strong></p>
+
   <p><strong>Description: </strong><%= product.description %></p>
+
   <p><strong>Price: </strong>$<%= product.starting_price %></p>
-  <br>
+
+<script> 
+var remaining_time = function(product){
+  var now = moment();
+  var time = <%= product.end_time %> - now
+}
+</script>
+
+<p><strong>Remaining Time: </strong> </p>
+  

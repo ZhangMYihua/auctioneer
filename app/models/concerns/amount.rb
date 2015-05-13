@@ -1,0 +1,14 @@
+class amount < Struct.new(:bid_amount_string)
+
+  include comparable
+
+  def <=>(other)
+    self.bid_amount_string <=> other.bid_amount_string
+  end
+
+  def ==(other)
+    self.bid_amount_string == other.bid_amount_string
+  end
+
+
+end

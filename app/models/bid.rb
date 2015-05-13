@@ -17,4 +17,8 @@ class Bid < ActiveRecord::Base
     end
   end
 
+  def greater?(other)
+    self.bid_amount_string >
+  end
+
 end

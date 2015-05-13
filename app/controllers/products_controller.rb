@@ -10,6 +10,10 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @seller = @product.seller
+
+    if current_user
+      @bid = @product.bids.build
+    end
   end
 
   def create

@@ -1,7 +1,7 @@
 require 'time_diff'
 
 class Product < ActiveRecord::Base
-  belongs_to :seller, class_name: 'User', foreign_key: :seller_id
+  belongs_to :seller, class_name: 'User'
   has_many :bids
   monetize :starting_price_cents
 
@@ -12,6 +12,13 @@ class Product < ActiveRecord::Base
       t[:diff]
     else
       "This auction has closed"
+    end
+  end
+
+  def top_bid
+    if self.bids.any? do |bid|
+      
+
     end
   end
 

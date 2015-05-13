@@ -6,7 +6,6 @@ class Product < ActiveRecord::Base
   monetize :starting_price_cents
 
   def remaining_time
-    # binding.pry
     if self.end_time > Time.now.utc
       t = Time.diff(self.end_time, Time.zone.now)
       t[:diff]
@@ -15,24 +14,29 @@ class Product < ActiveRecord::Base
     end
   end
 
+  
   def top_bid   
-    bid = self.bids.sort do |bid, other_bid|
-      bid.bid_amount_string <=> other_bid.bid_amount_string
+    bids = self.bids.sort do |bid, other_bid|
+      other_bid.bid_amount_string <=> bid.bid_amount_string
     end
-    bid.first
+    bids.first
+  end
+  
+  def display_bid
+    unless self.bids.none? 
+      self.top_bid.bid_amount_string
+    end 
   end
 
   def is_biddable?(requested_bid)
     in_time = self.end_time > Time.now.utc
-    first = self.bids.none?
+    first = self.bids.none? && (requested_bid.bid_amount_string > self.starting_price_string)
     
-    biddable = if first == true
-      true
-    else 
-      requested_bid.greater?(self.top_bid)
+    if self.bids.any? 
+      biddable = requested_bid.greater?(self.top_bid) 
     end
     
-    in_time && biddable
+    in_time && (first || biddable)
   end
 
   def strf_time

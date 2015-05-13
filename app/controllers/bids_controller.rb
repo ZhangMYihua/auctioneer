@@ -3,15 +3,16 @@ class BidsController < ApplicationController
   before_filter :ensure_logged_in, only: [:create, :destroy]
 
   def new
-
+    @bid = @product.bids.new
   end
 
   def create
-    @bid = @product.bids.build(bids_params)
+    @bid = Bid.new bids_params
     @bid.user = current_user
 
+    # binding.pry
     if @bid.save
-      redirect_to product_path(:product_id), notice: 'Bid made!'
+      redirect_to products_path, notice: 'Bid made!'
     else
       render 'products/show'
     end
@@ -23,7 +24,11 @@ class BidsController < ApplicationController
 
 private
   def bids_params
-    params.require(:bid).permit(:product_id, :bid_amount_string)
+    # params.require(:bid).permit(:product_id, :bid_amount_string)
+    { 
+      bid_amount_string: params[:bid][:bid_amount_string],
+      product_id: params[:product_id]
+    }
   end
 
   def load_product 

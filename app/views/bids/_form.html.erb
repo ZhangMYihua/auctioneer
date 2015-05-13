@@ -1,0 +1,12 @@
+<%= form_for([@product, @bid]) do |f| %>
+
+    <div class="field">
+      <%= f.label :bid_amount_string %><br>
+      <%= f.text_field :bid_amount_string %>
+    </div>
+
+    <div class="actions" style="margin-top: 10px;">
+      <%= f.submit %>
+    </div>
+
+<% end %>

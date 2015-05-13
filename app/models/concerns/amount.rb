@@ -1,6 +1,6 @@
-class amount < Struct.new(:bid_amount_string)
+class Amount < Struct.new(:bid_amount_string)
 
-  include comparable
+  include Comparable
 
   def <=>(other)
     self.bid_amount_string <=> other.bid_amount_string

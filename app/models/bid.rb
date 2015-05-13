@@ -18,13 +18,14 @@ class Bid < ActiveRecord::Base
     end
   end
 
+  def greater?(other)
+    self.bid_amount_string > other.bid_amount_string
+  end
+  
+private
   def consistent
     unless product.is_biddable?(self)
       errors.add(:product, "is not capable of making that bid")
     end
-  end
-
-  def greater?(other)
-    self.bid_amount_string > other.bid_amount_string
   end
 end

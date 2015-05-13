@@ -20,13 +20,13 @@
 
 <h2>Bids</h2> 
 
-<h3>Top bid: <%= @product.top_bid.bid_amount_string %>
+<h3>Top bid: <%= @product.display_bid %>
 </h3> 
 
 <% if current_user %>
   <h3>Make a bid</h3>
 
-  <%= form_for([@product, @bid]) do |f| %>
+  <%= form_for([@product, Bid.new]) do |f| %>
 
     <div class="field">
       <%= f.label :bid_amount_string %><br>

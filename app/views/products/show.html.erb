@@ -4,9 +4,9 @@
 
 <h2><%= @product.description %></h2>
 
-<h3>$<%= @product.starting_price %></h3>
+<h3>Starting price = $<%= @product.starting_price %></h3>
 
-<h3><div id='countdown'>Remaining time: <%= @product.remaining_time %></div></h3>
+<h3>Remaining time:<div id='countdown'><%= @product.remaining_time %></div></h3>
 
   <% if @product.end_time > DateTime.now.utc%>
     <script>
@@ -20,8 +20,26 @@
 
 <h2>Bids</h2> 
 
-<h3>Top bid: <%= if @product.bids.any? %>
-              <%
-
-
+<h3>Top bid: <%= @product.top_bid.bid_amount_string %>
 </h3> 
+
+<% if current_user %>
+  <h3>Make a bid</h3>
+
+  <%= form_for([@product, @bid]) do |f| %>
+
+    <div class="field">
+      <%= f.label :bid_amount_string %><br>
+      <%= f.text_field :bid_amount_string %>
+    </div>
+
+    <div class="actions" style="margin-top: 10px;">
+      <%= f.submit %>
+    </div>
+
+  <% end %>
+
+<% else %>
+  <p>Please <%= link_to "log in", new_session_path %> to make a bid.</p>
+
+<% end %>

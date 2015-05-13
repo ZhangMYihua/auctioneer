@@ -15,11 +15,24 @@ class Product < ActiveRecord::Base
     end
   end
 
-  def top_bid
-    if self.bids.any? do |bid|
-      
-
+  def top_bid   
+    bid = self.bids.sort do |bid, other_bid|
+      bid.bid_amount_string <=> other_bid.bid_amount_string
     end
+    bid.first
+  end
+
+  def is_biddable?(requested_bid)
+    in_time = self.end_time > Time.now.utc
+    first = self.bids.none?
+    
+    biddable = if first == true
+      true
+    else 
+      requested_bid.greater?(self.top_bid)
+    end
+    
+    in_time && biddable
   end
 
   def strf_time

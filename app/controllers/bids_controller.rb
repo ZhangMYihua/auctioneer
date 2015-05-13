@@ -12,11 +12,13 @@ class BidsController < ApplicationController
 
     if @bid.save
       redirect_to product_path(:product_id), notice: 'Bid made!'
+    else
+      render 'products/show'
+    end
   end
 
   def show
     @bid = Bid.find(params[:id])
-
   end
 
 private

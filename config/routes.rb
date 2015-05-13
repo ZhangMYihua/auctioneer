@@ -2,11 +2,11 @@ Rails.application.routes.draw do
 
   root 'products#index'
 
-  resources :products
-
-  resources :users, except: :index do
+  resources :products do
     resources :bids, only: [:new, :create]
   end
+
+  resources :users, except: :index 
 
   resources :sessions, only: [:new, :create, :destroy]
 

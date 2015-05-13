@@ -3,6 +3,8 @@ class Bid < ActiveRecord::Base
   belongs_to :product
   monetize :bid_amount_cents
 
+  validates :bid_amount_string, presence: true
+
   def bid_amount_string
     bid_amount && bid_amount.format
   end

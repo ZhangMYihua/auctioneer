@@ -1,4 +1,28 @@
+
+
+<script src="/assets/jquery.countdown.js"></script>
+
 <p><strong><%= link_to product.name, product %></strong></p>
+  
   <p><strong>Description: </strong><%= product.description %></p>
+  
   <p><strong>Price: </strong>$<%= product.starting_price %></p>
+  
+  <p><strong>Remaining Time: </strong>
+    <div id='countdown_<%= product.id %>'><%= product.remaining_time %>
+      <span id="clock_<%= product.id %>'"></span>
+    </div>
+  </p>
+
+  <p></p>
+
+  <% if product.end_time > DateTime.now.utc%>
+    <script>
+      $('#countdown_<%= product.id %>').countdown('<%= product.strf_time %>', function(event) { 
+        $(this).text(
+          event.strftime('%-D days %-H h %M min %S sec')
+        );
+      });
+    </script>
+  <% end %>
   <br>

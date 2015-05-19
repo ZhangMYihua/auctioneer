@@ -30,13 +30,13 @@ class Product < ActiveRecord::Base
 
   def is_biddable?(requested_bid)
     in_time = self.end_time > Time.now.utc
-    first = self.bids.none? && (requested_bid.bid_amount_string > self.starting_price_string)
+    first_bid = self.bids.none? && (requested_bid.bid_amount_string > self.starting_price_string)
     
     if self.bids.any? 
       biddable = requested_bid.greater?(self.top_bid) 
     end
     
-    in_time && (first || biddable)
+    in_time && (first_bid || biddable)
   end
 
   def strf_time

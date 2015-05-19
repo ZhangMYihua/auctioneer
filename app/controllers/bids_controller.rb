@@ -12,7 +12,7 @@ class BidsController < ApplicationController
 
     # binding.pry
     if @bid.save
-      redirect_to products_path, notice: 'Bid made!'
+      redirect_back_or_to products_path, notice: 'Bid made!'
     else
       render 'products/show'
     end

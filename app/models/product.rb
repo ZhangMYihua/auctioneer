@@ -4,6 +4,12 @@ class Product < ActiveRecord::Base
   belongs_to :seller, class_name: 'User'
   has_many :bids
   monetize :starting_price_cents
+  belongs_to :buyer, class_name: 'User'
+  
+  validates :email, uniqueness: true
+  validates :password, length: { minimum: 6 }
+  validates :password, confirmation: true
+  validates :password_confirmation, presence: true
 
   def remaining_time
     if self.end_time > Time.now.utc

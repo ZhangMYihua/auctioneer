@@ -4,6 +4,7 @@ class Product < ActiveRecord::Base
   belongs_to :seller, class_name: 'User'
   has_many :bids
   monetize :starting_price_cents
+  belongs_to :buyer, class_name: 'User'
 
   def remaining_time
     if self.end_time > Time.now.utc
@@ -21,6 +22,11 @@ class Product < ActiveRecord::Base
     end
     bids.first
   end
+
+  def top_bid_amount
+  self.top_bid.bid_amount_string
+  end
+
   
   def display_bid
     unless self.bids.none? 

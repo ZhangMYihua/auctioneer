@@ -6,7 +6,13 @@
   
   <p><strong>Description: </strong><%= product.description %></p>
   
-  <p><strong>Price: </strong>$<%= product.starting_price %></p>
+  <p>
+  <% if product.top_bid.present? %>
+    <strong> Current Bid: </strong><%= product.top_bid_amount %> 
+  <% else %>
+    <strong> Starting Price: </strong><%= product.starting_price %> 
+  <% end %>
+  </p>
   
   <p><strong>Remaining Time: </strong>
     <div id='countdown_<%= product.id %>'><%= product.remaining_time %>

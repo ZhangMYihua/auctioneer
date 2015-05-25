@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
+
   def show
+    @user = User.find(params[:id])
+    @products = @user.products.all
+    @bids = @user.bids.all
   end
 
   def new

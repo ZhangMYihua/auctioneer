@@ -5,11 +5,6 @@ class Product < ActiveRecord::Base
   has_many :bids
   monetize :starting_price_cents
   belongs_to :buyer, class_name: 'User'
-  
-  validates :email, uniqueness: true
-  validates :password, length: { minimum: 6 }
-  validates :password, confirmation: true
-  validates :password_confirmation, presence: true
 
   def remaining_time
     if self.end_time > Time.now.utc
@@ -27,6 +22,11 @@ class Product < ActiveRecord::Base
     end
     bids.first
   end
+
+  def top_bid_amount
+  self.top_bid.bid_amount_string
+  end
+
   
   def display_bid
     unless self.bids.none? 

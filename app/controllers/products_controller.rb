@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+  include ProductsHelper
+
   def index
     @products = Product.all
   end

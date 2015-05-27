@@ -1,18 +1,10 @@
-
-
 <script src="/assets/jquery.countdown.js"></script>
 
 <p><strong><%= link_to product.name, product %></strong></p>
   
   <p><strong>Description: </strong><%= product.description %></p>
   
-  <p>
-  <% if product.top_bid.present? %>
-    <strong> Current Bid: </strong><%= product.top_bid_amount %> 
-  <% else %>
-    <strong> Starting Price: </strong><%= product.starting_price %> 
-  <% end %>
-  </p>
+  <p><strong><%= bid_wrapper(product) %></strong></p>
   
   <p><strong>Remaining Time: </strong>
     <div id='countdown_<%= product.id %>'><%= product.remaining_time %>
@@ -31,4 +23,4 @@
       });
     </script>
   <% end %>
-  <br>
+<br>

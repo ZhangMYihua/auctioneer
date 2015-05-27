@@ -1,22 +1,7 @@
 <h4><%= link_to "Back To Products", products_path %></h4>
 
-<h1><%= @product.name %></h1>
+<%= render partial: "product", locals: { product: @product } %>
 
-<h2><%= @product.description %></h2>
-
-<h3>Starting price = $<%= @product.starting_price %></h3>
-
-<h3>Remaining time:<div id='countdown'><%= @product.remaining_time %></div></h3>
-
-  <% if @product.end_time > DateTime.now.utc%>
-    <script>
-      $('#countdown').countdown('<%= @product.strf_time %>', function(event) { 
-        $(this).text(
-          event.strftime('%-D days %-H h %M min %S sec')
-        );
-      });
-    </script>
-  <% end %>
 
 <h2>Bids</h2> 
 

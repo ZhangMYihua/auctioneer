@@ -15,7 +15,6 @@ class Product < ActiveRecord::Base
     end
   end
 
-  
   def top_bid   
     bids = self.bids.sort do |bid, other_bid|
       other_bid.bid_amount_string <=> bid.bid_amount_string
@@ -27,12 +26,13 @@ class Product < ActiveRecord::Base
   self.top_bid.bid_amount_string
   end
 
-  
   def display_bid
     unless self.bids.none? 
       self.top_bid.bid_amount_string
     end 
   end
+
+
 
   def is_biddable?(requested_bid)
     in_time = self.end_time > Time.now.utc

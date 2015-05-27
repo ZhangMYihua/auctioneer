@@ -4,21 +4,7 @@
   
   <p><strong>Description: </strong><%= product.description %></p>
   
-  <p>
-  <% if product.top_bid.present? %>
-    <% if current_user && current_user.bids.present? %>
-      <% if current_user.bids.any? do |bid| %>
-          <% bid.user_id == product.top_bid.user_id %>
-        <% end %>
-        <strong> Current Bid: </strong><%= product.top_bid_amount %> This is your bid!  
-      <% else %>
-        <strong> Current Bid: </strong><%= product.top_bid_amount %> 
-      <% end %>
-    <% end %>  
-  <% else %>
-    <strong> Starting Price: </strong><%= product.starting_price %> 
-  <% end %>
-  </p>
+  <p><strong><%= bid_wrapper(product) %></strong></p>
   
   <p><strong>Remaining Time: </strong>
     <div id='countdown_<%= product.id %>'><%= product.remaining_time %>
